@@ -1,0 +1,9 @@
+[package]
+authors = ["Andrew Jeffery <dev@jeffas.io>"]
+edition = "2018"
+name = "aoc-2020"
+version = "0.1.0"
+[dependencies]
+aoc-runner = "*"
+aoc-runner-derive = "*"
+regex = "*"
