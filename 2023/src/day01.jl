@@ -17,42 +17,51 @@ function part2()
 end
 
 function part2_inner(input)
-    mappings = Dict(
-        "one" => 1,
-        "two" => 2,
-        "three" => 3,
-        "four" => 4,
-        "five" => 5,
-        "six" => 6,
-        "seven" => 7,
-        "eight" => 8,
-        "nine" => 9,
-    )
+    mappings = [
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+    ]
     mapline = line -> begin
         f = missing
-        l = missing
         for i in 1:lastindex(line)
             lin = line[i:end]
             if f === missing
-                for (k, v) in mappings
+                for (v, k) in enumerate(mappings)
                     if startswith(lin, k)
                         f = v
                         break
                     end
                 end
+                if isnumeric(lin[1])
+                    f = lin[1]
+                end
             end
-            if f === missing && isnumeric(lin[1])
-                f = parse(Int, lin[1])
+            if f !== missing
+                break
             end
+        end
 
-            for (k, v) in mappings
+        l = missing
+        for i in lastindex(line):-1:1
+            lin = line[i:end]
+            for (v, k) in enumerate(mappings)
                 if startswith(lin, k)
                     l = v
                     break
                 end
             end
             if isnumeric(lin[1])
-                l = parse(Int, lin[1])
+                l = lin[1]
+            end
+            if l !== missing
+                break
             end
         end
         parse(Int, "$f$l")
