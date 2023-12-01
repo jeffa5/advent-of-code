@@ -1,3 +1,4 @@
-include("template.jl")
-dayn_part1()
-dayn_part2()
+import .Day1
+
+@info @time Day1.part1()
+@info @time Day1.part2()
