@@ -11,8 +11,7 @@ function part1_inner(input)
     s = split(input, "\n") |> ls -> filter(nonempty, ls) |> ls -> map(l -> split(l, ": "), ls)
     gamesum = 0
     for line in s
-        game = line[1]
-        rest = line[2]
+        (game, rest) = line
         game = split(game, " ")[2]
         hands = map(v -> split(v, ", "), split(rest, "; "))
         valid = true
@@ -43,11 +42,10 @@ function part2_inner(input)
     s = split(input, "\n") |> ls -> filter(nonempty, ls) |> ls -> map(l -> split(l, ": "), ls)
     gamesum = 0
     for line in s
-        game = line[1]
-        rest = line[2]
+        (game, rest) = line
         game = split(game, " ")[2]
         hands = map(v -> split(v, ", "), split(rest, "; "))
-        maxred =0
+        maxred = 0
         maxgreen = 0
         maxblue = 0
         for hand in hands
