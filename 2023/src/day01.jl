@@ -1,4 +1,4 @@
-module Day1
+module Day01
 
 input = read("input/day01.txt", String)
 
@@ -73,19 +73,19 @@ end
 using Test
 
 @testset "day 01" begin
-    @test Day1.part1_inner("1abc2
+    @test Day01.part1_inner("1abc2
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet") == 142
-    @test Day1.part1() == 56506
+    @test Day01.part1() == 56506
 
-    @test Day1.part2_inner("two1nine
+    @test Day01.part2_inner("two1nine
 eightwothree
 abcone2threexyz
 xtwone3four
 4nineeightseven2
 zoneight234
 7pqrstsixteen") == 281
-    @test Day1.part2() == 56017
+    @test Day01.part2() == 56017
 end
 end
