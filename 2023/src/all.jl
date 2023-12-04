@@ -16,4 +16,8 @@ import .Day03
 @time Day03.part1()
 @time Day03.part2()
 
+import .Day04
+@time Day04.part1()
+@time Day04.part2()
+
 ()
