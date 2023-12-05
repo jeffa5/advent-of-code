@@ -20,4 +20,8 @@ import .Day04
 @time Day04.part1()
 @time Day04.part2()
 
+import .Day05
+@time Day05.part1()
+@time Day05.part2()
+
 ()
