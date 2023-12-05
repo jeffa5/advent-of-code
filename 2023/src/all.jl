@@ -4,24 +4,22 @@ for day in day_files
     include("$day")
 end
 
-import .Day01
-@time Day01.part1()
-@time Day01.part2()
+import .Day01, .Day02, .Day03, .Day04, .Day05
 
-import .Day02
-@time Day02.part1()
-@time Day02.part2()
+function time_all()
+    modules = [Day01, Day02, Day03, Day04, Day05]
 
-import .Day03
-@time Day03.part1()
-@time Day03.part2()
+    times = []
 
-import .Day04
-@time Day04.part1()
-@time Day04.part2()
+    for mod in modules
+        push!(times, @elapsed mod.part1())
+        push!(times, @elapsed mod.part2())
+    end
 
-import .Day05
-@time Day05.part1()
-@time Day05.part2()
+    times
+end
 
-()
+times = time_all()
+
+println(times)
+println(sum(times))
