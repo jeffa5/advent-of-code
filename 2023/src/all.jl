@@ -4,10 +4,10 @@ for day in day_files
     include("$day")
 end
 
-import .Day01, .Day02, .Day03, .Day04, .Day05
+import .Day01, .Day02, .Day03, .Day04, .Day05, .Day06
 
 function time_all()
-    modules = [Day01, Day02, Day03, Day04, Day05]
+    modules = [Day01, Day02, Day03, Day04, Day05, Day06]
 
     times = []
 
