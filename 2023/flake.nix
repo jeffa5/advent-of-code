@@ -11,7 +11,7 @@
     pkgs = import nixpkgs {inherit system;};
   in {
     devShells.${system}.default = pkgs.mkShellNoCC {
-      packages = [pkgs.julia];
+      packages = [pkgs.julia pkgs.aoc-cli];
     };
   };
 }
