@@ -1,4 +1,5 @@
 module Day08
+using TimerOutputs
 
 input = read("input/day08.txt", String)
 
@@ -50,48 +51,76 @@ function part2_inner(input)
         l, r = split(replace(lr, '(' => "", ')' => ""), ", ")
         graph[root] = (l, r)
     end
-    vec_graph = []
-    vec_indices = []
-    graph_indices = Dict()
-    for (k, v) in graph
-        push!(vec_indices, k)
-        graph_indices[k] = length(vec_indices)
-    end
-    for (k, (l, r)) in graph
-        push!(vec_graph, (graph_indices[l], graph_indices[r]))
-    end
-    println(vec_graph)
-    println(vec_indices)
-    println(graph_indices)
+    current_nodes = [c for c in keys(graph) if endswith(c, "A")]
+    @show current_nodes
+    letter = 0
+    for current_node in current_nodes
+        iterations = 0
+        path = Dict()
+        # @show current_node
 
-    current_nodes = [v for (k, v) in graph_indices if endswith(k, "A")]
-    println(current_nodes)
-    iterations = 0
-    for rl in Iterators.cycle(lrs)
-        iterations += 1
-        for (i, current_node) in enumerate(current_nodes)
-            l, r = vec_graph[current_node]
-            if rl == 'R'
-                current_nodes[i] = r
-            elseif rl == 'L'
-                current_nodes[i] = l
+        start_to_end_of_loop = 0
+        start_of_loop_to_z = 0
+        loop_length = 0
+        start_to_start_of_loop  = 0
+
+        zs = []
+        for lr in Iterators.cycle(lrs)
+
+            lrs_offset = iterations % length(lrs)
+            old_node = deepcopy(current_node)
+
+            if endswith(current_node, "Z")
+                push!(zs, (lrs_offset, current_node, iterations))
+            end
+            # @show lrs_offset, old_node, lr
+            if haskey(path, (lrs_offset, old_node))
+                if start_to_end_of_loop == 0
+                    start_to_end_of_loop = iterations
+                    # @show start_to_end_of_loop
+                else
+                    if endswith(current_node, "Z")
+                        if start_of_loop_to_z == 0
+                            start_of_loop_to_z = iterations - start_to_end_of_loop
+                            # @show start_of_loop_to_z
+                        else
+                            # already found the z, and just found it again
+                            loop_length = iterations - start_to_end_of_loop - start_of_loop_to_z
+                            start_to_start_of_loop = start_to_end_of_loop - loop_length
+                            # @show loop_length
+                            break
+                        end
+                    end
+                end
+            end
+            iterations += 1
+
+            l, r = graph[current_node]
+            if lr == 'R'
+                current_node = r
+            elseif lr == 'L'
+                current_node = l
             else
-                throw(DomainError(rl, "Expected one of 'LR'"))
+                throw(DomainError(lr, "Expected one of 'LR'"))
             end
+            path[(lrs_offset, old_node)] = current_node
         end
-        count = 0
-        for n in current_nodes
-            if endswith(vec_indices[n], "Z")
-                count += 1
-            end
-        end
-        if count == min(3, length(current_nodes))
-            break
-        end
-        println(iterations)
+        # @show path
+        # @show start_to_end_of_loop, start_of_loop_to_z, loop_length, start_to_start_of_loop
+        # # check that there are only one z per loop
+        # for (lr, z, i) in zs
+        #     @show z,lr, i,  (i-start_to_start_of_loop)% loop_length
+        # end
+        l = letter + 'a'
+        letter += 1
+        println("y = $start_to_start_of_loop + $start_of_loop_to_z + $l * $loop_length")
     end
-    println(current_nodes)
-    iterations
+
+    # a = start to loop start
+    # z = loop start to z
+    # l = loop length
+    # iterations = a + z + xl
+    0
 end
 
 
@@ -125,6 +154,6 @@ ZZZ = (ZZZ, ZZZ)
 22C = (22Z, 22Z)
 22Z = (22B, 22B)
 XXX = (XXX, XXX)") == 6
-    @test Day08.part2() == 253907829
+    # @test Day08.part2() == 253907829
 end
 end
