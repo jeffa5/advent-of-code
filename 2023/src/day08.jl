@@ -1,5 +1,4 @@
 module Day08
-using TimerOutputs
 
 input = read("input/day08.txt", String)
 
