@@ -1,4 +1,3 @@
-
 module Day09
 
 input = read("input/day09.txt", String)
@@ -66,6 +65,6 @@ using Test
     @test Day09.part2_inner("0 3 6 9 12 15
 1 3 6 10 15 21
 10 13 16 21 30 45") == 2
-    # @test Day09.part2() == 14321394058031
+    @test Day09.part2() == 803
 end
 end
