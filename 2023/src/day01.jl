@@ -71,21 +71,23 @@ end
 
 
 using Test
+function test()
 
-@testset "day 01" begin
-    @test Day01.part1_inner("1abc2
+    @testset "day 01" begin
+        @test Day01.part1_inner("1abc2
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet") == 142
-    @test Day01.part1() == 56506
+        @test Day01.part1() == 56506
 
-    @test Day01.part2_inner("two1nine
+        @test Day01.part2_inner("two1nine
 eightwothree
 abcone2threexyz
 xtwone3four
 4nineeightseven2
 zoneight234
 7pqrstsixteen") == 281
-    @test Day01.part2() == 56017
+        @test Day01.part2() == 56017
+    end
 end
 end

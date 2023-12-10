@@ -54,11 +54,11 @@ function part2_inner(input)
                 source_start = parse(Int, source_start)
                 dest_start = parse(Int, dest_start)
                 range_length = parse(Int, range_length)
-                source_end = source_start + range_length-1
+                source_end = source_start + range_length - 1
                 i = 1
                 while i <= length(seeds)
                     (seed_start, seed_length) = seeds[i]
-                    seed_end = seed_start + seed_length-1
+                    seed_end = seed_start + seed_length - 1
                     if seed_start < source_start
                         # a-b
                         #  c---d
@@ -105,10 +105,11 @@ end
 
 
 using Test
+function test()
 
-@testset "day 05" begin
-    @test Day05.part1_inner(
-        "seeds: 79 14 55 13
+    @testset "day 05" begin
+        @test Day05.part1_inner(
+            "seeds: 79 14 55 13
 
 seed-to-soil map:
 50 98 2
@@ -178,5 +179,6 @@ humidity-to-location map:
 60 56 37
 56 93 4") == 46
     @test Day05.part2() == 6472060
+end
 end
 end

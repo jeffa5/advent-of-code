@@ -47,14 +47,16 @@ end
 
 
 using Test
+function test()
 
-@testset "day 06" begin
-    @test Day06.part1_inner("Time:      7  15   30
+    @testset "day 06" begin
+        @test Day06.part1_inner("Time:      7  15   30
 Distance:  9  40  200") == 288
-    @test Day06.part1() == 140220
+        @test Day06.part1() == 140220
 
-    @test Day06.part2_inner("Time:      7  15   30
+        @test Day06.part2_inner("Time:      7  15   30
 Distance:  9  40  200") == 71503
-    @test Day06.part2() == 39570185
+        @test Day06.part2() == 39570185
+    end
 end
 end

@@ -83,12 +83,12 @@ function part2_inner(input)
 
             count = 0
             ratio = 1
-            r = get_number(line, j+1)
+            r = get_number(line, j + 1)
             if r != ""
                 count += 1
                 ratio *= parse(Int, r)
             end
-            l = get_number(line, j-1)
+            l = get_number(line, j - 1)
             if l != ""
                 count += 1
                 ratio *= parse(Int, l)
@@ -103,12 +103,12 @@ function part2_inner(input)
                         ratio *= parse(Int, t)
                     end
                 else
-                    tl = get_number(above, j-1)
+                    tl = get_number(above, j - 1)
                     if tl != ""
                         count += 1
                         ratio *= parse(Int, tl)
                     end
-                    tr = get_number(above, j+1)
+                    tr = get_number(above, j + 1)
                     if tr != ""
                         count += 1
                         ratio *= parse(Int, tr)
@@ -125,12 +125,12 @@ function part2_inner(input)
                         ratio *= parse(Int, b)
                     end
                 else
-                    bl = get_number(below, j-1)
+                    bl = get_number(below, j - 1)
                     if bl != ""
                         count += 1
                         ratio *= parse(Int, bl)
                     end
-                    br = get_number(below, j+1)
+                    br = get_number(below, j + 1)
                     if br != ""
                         count += 1
                         ratio *= parse(Int, br)
@@ -148,10 +148,11 @@ end
 
 
 using Test
+function test()
 
-@testset "day 03" begin
-    @test Day03.part1_inner(
-        "467..114..
+    @testset "day 03" begin
+        @test Day03.part1_inner(
+            "467..114..
 ...*......
 ..35..633.
 ......#...
@@ -161,10 +162,10 @@ using Test
 ......755.
 ...\$.*....
 .664.598..") == 4361
-    @test Day03.part1() == 498559
+        @test Day03.part1() == 498559
 
-    @test Day03.part2_inner(
-        "467..114..
+        @test Day03.part2_inner(
+            "467..114..
 ...*......
 ..35..633.
 ......#...
@@ -174,6 +175,7 @@ using Test
 ......755.
 ...\$.*....
 .664.598..") == 467835
-    @test Day03.part2() == 72246648
+        @test Day03.part2() == 72246648
+    end
 end
 end

@@ -55,16 +55,18 @@ end
 
 
 using Test
+function test()
 
-@testset "day 09" begin
-    @test Day09.part1_inner("0 3 6 9 12 15
+    @testset "day 09" begin
+        @test Day09.part1_inner("0 3 6 9 12 15
 1 3 6 10 15 21
 10 13 16 21 30 45") == 114
-    @test Day09.part1() == 1681758908
+        @test Day09.part1() == 1681758908
 
-    @test Day09.part2_inner("0 3 6 9 12 15
+        @test Day09.part2_inner("0 3 6 9 12 15
 1 3 6 10 15 21
 10 13 16 21 30 45") == 2
-    @test Day09.part2() == 803
+        @test Day09.part2() == 803
+    end
 end
 end

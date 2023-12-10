@@ -149,22 +149,24 @@ end
 
 
 using Test
+function test()
 
-@testset "day 07" begin
-    @test Day07.part1_inner("32T3K 765
+    @testset "day 07" begin
+        @test Day07.part1_inner("32T3K 765
 T55J5 684
 KK677 28
 KTJJT 220
 QQQJA 483
 ") == 6440
-    @test Day07.part1() == 253205868
+        @test Day07.part1() == 253205868
 
-    @test Day07.part2_inner("32T3K 765
+        @test Day07.part2_inner("32T3K 765
 T55J5 684
 KK677 28
 KTJJT 220
 QQQJA 483
 ") == 5905
-    @test Day07.part2() == 253907829
+        @test Day07.part2() == 253907829
+    end
 end
 end

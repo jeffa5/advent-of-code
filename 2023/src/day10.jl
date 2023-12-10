@@ -221,36 +221,36 @@ function part2_inner(input)
     captured
 end
 
-
 using Test
+function test()
 
-@testset "day 10" begin
-    @test Day10.part1_inner(".....
+    @testset "day 10" begin
+        @test Day10.part1_inner(".....
 .S-7.
 .|.|.
 .L-J.
 .....") == 4
-    @test Day10.part1_inner("-L|F7
+        @test Day10.part1_inner("-L|F7
 7S-7|
 L|7||
 -L-J|
 L|-JF
 ") == 4
-    @test Day10.part1_inner("..F7.
+        @test Day10.part1_inner("..F7.
 .FJ|.
 SJ.L7
 |F--J
 LJ...
 ") == 8
-    @test Day10.part1_inner("7-F7-
+        @test Day10.part1_inner("7-F7-
 .FJ|7
 SJLL7
 |F--J
 LJ.LJ
 ") == 8
-    @test Day10.part1() == 7145
+        @test Day10.part1() == 7145
 
-    @test Day10.part2_inner("...........
+        @test Day10.part2_inner("...........
 .S-------7.
 .|F-----7|.
 .||.....||.
@@ -260,7 +260,7 @@ LJ.LJ
 .L--J.L--J.
 ...........
 ") == 4
-    @test Day10.part2_inner("...........
+        @test Day10.part2_inner("...........
 .S------7.
 .|F----7|.
 .||....||.
@@ -292,6 +292,7 @@ L---JF-JLJ.||-FJLJJ7
 L.L7LFJ|||||FJL7||LJ
 L7JLJL-JLJLJL--JLJ.L
 ") == 10
-    @test Day10.part2() == 445
+        @test Day10.part2() == 445
+    end
 end
 end

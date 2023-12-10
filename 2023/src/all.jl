@@ -6,20 +6,25 @@ end
 
 import .Day01, .Day02, .Day03, .Day04, .Day05, .Day06, .Day07, .Day08, .Day09, .Day10
 
-function time_all()
-    modules = [Day01, Day02, Day03, Day04, Day05, Day06, Day07, Day08, Day09, Day10]
+modules = [Day01, Day02, Day03, Day04, Day05, Day06, Day07, Day08, Day09, Day10]
 
+function test_all()
+    for mod in modules
+        mod.test()
+    end
+end
+
+function time_all()
     times = []
 
     for mod in modules
-        push!(times, @elapsed mod.part1())
-        push!(times, @elapsed mod.part2())
+        t1 = @elapsed mod.part1()
+        t2 = @elapsed mod.part2()
+        println("$mod part 1: $t1")
+        println("$mod part 2: $t2")
+        push!(times, t1)
+        push!(times, t2)
     end
 
     times
 end
-
-times = time_all()
-
-println(times)
-println(sum(times))

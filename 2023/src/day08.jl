@@ -60,7 +60,7 @@ function part2_inner(input)
         start_to_end_of_loop = 0
         start_of_loop_to_z = 0
         loop_length = 0
-        start_to_start_of_loop  = 0
+        start_to_start_of_loop = 0
 
         zs = []
         for lr in Iterators.cycle(lrs)
@@ -114,9 +114,10 @@ end
 
 
 using Test
+function test()
 
-@testset "day 08" begin
-    @test Day08.part1_inner("RL
+    @testset "day 08" begin
+        @test Day08.part1_inner("RL
 
 AAA = (BBB, CCC)
 BBB = (DDD, EEE)
@@ -125,15 +126,15 @@ DDD = (DDD, DDD)
 EEE = (EEE, EEE)
 GGG = (GGG, GGG)
 ZZZ = (ZZZ, ZZZ)") == 2
-    @test Day08.part1_inner("LLR
+        @test Day08.part1_inner("LLR
 
 AAA = (BBB, BBB)
 BBB = (AAA, ZZZ)
 ZZZ = (ZZZ, ZZZ)
 ") == 6
-    @test Day08.part1() == 14681
+        @test Day08.part1() == 14681
 
-    @test Day08.part2_inner("LR
+        @test Day08.part2_inner("LR
 
 11A = (11B, XXX)
 11B = (XXX, 11Z)
@@ -143,6 +144,7 @@ ZZZ = (ZZZ, ZZZ)
 22C = (22Z, 22Z)
 22Z = (22B, 22B)
 XXX = (XXX, XXX)") == 6
-    @test Day08.part2() == 14321394058031
+        @test Day08.part2() == 14321394058031
+    end
 end
 end
