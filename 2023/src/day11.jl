@@ -16,12 +16,10 @@ function part2()
 end
 
 function part2_inner(input, scale)
-    lines = input |> v -> split(v, "\n", keepempty=false)
-    universe = []
+    universe = input |> v -> split(v, "\n", keepempty=false)
     row_widths = []
     col_widths = []
-    for line in lines
-        push!(universe, line)
+    for line in universe
         if all(map(v -> v == '.', collect(line)))
             push!(row_widths, scale)
         else
@@ -29,8 +27,7 @@ function part2_inner(input, scale)
         end
     end
 
-    col = 1
-    while col <= length(universe[1])
+    for col in 1:length(universe[1])
         all = true
         for i in 1:length(universe)
             if universe[i][col] != '.'
@@ -43,14 +40,17 @@ function part2_inner(input, scale)
         else
             push!(col_widths, 1)
         end
-        col += 1
     end
 
     positions = []
+    x = 0
     for i in 1:length(universe)
+        x += row_widths[i]
+        y = 0
         for j in 1:length(universe[i])
+            y += col_widths[j]
             if universe[i][j] == '#'
-                push!(positions, (i, j))
+                push!(positions, (x, y))
             end
         end
     end
@@ -58,13 +58,7 @@ function part2_inner(input, scale)
     path_sum = 0
     for (i, pos) in enumerate(positions)
         for other_pos in positions[i+1:end]
-            len = 0
-            for a in (min(pos[1], other_pos[1])+1):(max(pos[1], other_pos[1]))
-                len += row_widths[a]
-            end
-            for a in (min(pos[2], other_pos[2])+1):(max(pos[2], other_pos[2]))
-                len += col_widths[a]
-            end
+            len = abs(pos[1] - other_pos[1]) + abs(pos[2] - other_pos[2])
             path_sum += len
         end
     end
